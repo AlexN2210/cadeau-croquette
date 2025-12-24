@@ -24,7 +24,7 @@ export default function GiftAnimation({ onComplete }: GiftAnimationProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-red-900 via-red-800 to-rose-900">
-      <div className="relative perspective">
+      <div className="relative" style={{ perspective: '1000px' }}>
         {showParticles && (
           <>
             {[...Array(20)].map((_, i) => (
@@ -45,51 +45,130 @@ export default function GiftAnimation({ onComplete }: GiftAnimationProps) {
 
         <button
           onClick={handleClick}
-          className={`relative preserve-3d transition-transform duration-300 ${
+          className={`relative transition-transform duration-300 ${
             isOpening ? 'animate-gift-shake' : 'hover:scale-110'
           }`}
           disabled={isOpening}
         >
-          <div className="relative w-56 h-56">
+          <div className="relative" style={{ width: '200px', height: '240px' }}>
             {/* Boîte du cadeau */}
             <div
-              className={`absolute inset-0 bg-gradient-to-br from-red-600 to-red-700 rounded-2xl shadow-2xl transition-all duration-500 ${
-                isOpening ? 'shadow-red-900/50' : ''
-              }`}
+              className="absolute bg-gradient-to-br from-red-600 to-red-700 shadow-2xl"
               style={{
-                transformStyle: 'preserve-3d',
+                width: '200px',
+                height: '200px',
+                top: '40px',
+                left: '0',
+                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2), 0 10px 40px rgba(0,0,0,0.4)',
               }}
             >
               {/* Ruban horizontal */}
-              <div className="absolute inset-x-0 top-1/2 h-10 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 -translate-y-1/2 shadow-lg border-y-2 border-amber-500/30"></div>
+              <div 
+                className="absolute bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 shadow-lg"
+                style={{
+                  width: '200px',
+                  height: '12px',
+                  top: 'calc(50% - 6px)',
+                  left: '0',
+                  boxShadow: '0 2px 8px rgba(255, 193, 7, 0.5)',
+                }}
+              />
               {/* Ruban vertical */}
-              <div className="absolute inset-y-0 left-1/2 w-10 bg-gradient-to-b from-amber-300 via-amber-400 to-amber-300 -translate-x-1/2 shadow-lg border-x-2 border-amber-500/30"></div>
-              {/* Noeud central */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full shadow-xl border-4 border-amber-300 z-10"></div>
+              <div 
+                className="absolute bg-gradient-to-b from-amber-300 via-amber-400 to-amber-300 shadow-lg"
+                style={{
+                  width: '12px',
+                  height: '200px',
+                  left: 'calc(50% - 6px)',
+                  top: '0',
+                  boxShadow: '0 2px 8px rgba(255, 193, 7, 0.5)',
+                }}
+              />
             </div>
 
             {/* Couvercle du cadeau */}
             <div
-              className={`absolute inset-x-0 -top-4 h-28 bg-gradient-to-br from-red-500 to-red-600 rounded-t-2xl shadow-2xl preserve-3d transition-all duration-500 ${
+              className={`absolute bg-gradient-to-br from-red-500 to-red-600 shadow-xl ${
                 isOpening ? 'animate-open-lid' : ''
               }`}
               style={{
-                transformStyle: 'preserve-3d',
+                width: '200px',
+                height: '40px',
+                top: '0px',
+                left: '0',
                 transformOrigin: 'bottom center',
+                boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2), 0 5px 20px rgba(0,0,0,0.3)',
               }}
             >
               {/* Ruban horizontal sur le couvercle */}
-              <div className="absolute inset-x-0 top-1/2 h-8 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 -translate-y-1/2 shadow-md border-y border-amber-500/30"></div>
-              {/* Noeud sur le couvercle */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-12 bg-gradient-to-b from-amber-400 to-amber-500 rounded-full shadow-lg border-2 border-amber-300"></div>
+              <div 
+                className="absolute bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300 shadow-md"
+                style={{
+                  width: '200px',
+                  height: '10px',
+                  top: 'calc(50% - 5px)',
+                  left: '0',
+                }}
+              />
             </div>
+
+            {/* Nœud - Centre */}
+            <div
+              className={`absolute bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 rounded-full shadow-2xl ${
+                isOpening ? 'opacity-0 transition-opacity duration-500' : ''
+              }`}
+              style={{
+                width: '60px',
+                height: '60px',
+                left: 'calc(50% - 30px)',
+                top: '-20px',
+                border: '4px solid rgba(255, 215, 0, 0.6)',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.5), inset 0 2px 10px rgba(255,255,255,0.3)',
+              }}
+            />
+
+            {/* Boucle gauche du nœud */}
+            <div
+              className={`absolute bg-gradient-to-br from-amber-400 to-amber-500 rounded-full shadow-xl ${
+                isOpening ? 'opacity-0 transition-opacity duration-500' : ''
+              }`}
+              style={{
+                width: '50px',
+                height: '35px',
+                left: 'calc(50% - 55px)',
+                top: '-25px',
+                borderRadius: '50% 50% 45% 45%',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+              }}
+            />
+
+            {/* Boucle droite du nœud */}
+            <div
+              className={`absolute bg-gradient-to-br from-amber-400 to-amber-500 rounded-full shadow-xl ${
+                isOpening ? 'opacity-0 transition-opacity duration-500' : ''
+              }`}
+              style={{
+                width: '50px',
+                height: '35px',
+                right: 'calc(50% - 55px)',
+                top: '-25px',
+                borderRadius: '50% 50% 45% 45%',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+              }}
+            />
 
             {/* Contenu révélé */}
             <div
-              className={`absolute inset-0 flex items-center justify-center ${
+              className={`absolute flex items-center justify-center ${
                 isOpening ? 'animate-reveal-content' : 'opacity-0 pointer-events-none'
               }`}
-              style={{ animationDelay: '0.6s' }}
+              style={{ 
+                animationDelay: '0.8s',
+                left: '0',
+                top: '40px',
+                width: '200px',
+                height: '200px',
+              }}
             >
               <div className="text-7xl animate-bounce-slow drop-shadow-2xl">❤️</div>
             </div>
