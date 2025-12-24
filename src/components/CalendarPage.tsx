@@ -35,27 +35,42 @@ export default function CalendarPage() {
     },
     {
       number: 6,
-      title: 'Paxton Paris MLV',
+      title: 'Spa de 5h, Chambre et Cocktail au Paxton Paris MLV ****',
       description: '1, Av. Joseph Paxton, 77164 Ferrières-en-Brie',
       icon: MapPin,
       mapContent: true,
     },
   ];
 
+  const destinationCard = cards.find(card => card.mapContent);
+  const otherCards = cards.filter(card => !card.mapContent);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-rose-900 py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Nos Expériences
+            Notre destination
           </h1>
           <p className="text-white/80 text-lg">
             Clique sur chaque case pour découvrir les surprises
           </p>
         </div>
 
+        {destinationCard && (
+          <div className="mb-12 flex justify-center animate-fade-in">
+            <div className="w-full max-w-2xl">
+              <Card 
+                {...destinationCard} 
+                initialFlipped={true}
+                height="h-96"
+              />
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {cards.map((card) => (
+          {otherCards.map((card) => (
             <Card key={card.number} {...card} />
           ))}
         </div>

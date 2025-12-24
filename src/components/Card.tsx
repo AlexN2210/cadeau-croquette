@@ -7,14 +7,16 @@ interface CardProps {
   description: string;
   icon: LucideIcon;
   mapContent?: boolean;
+  initialFlipped?: boolean;
+  height?: string;
 }
 
-export default function Card({ number, title, description, icon: Icon, mapContent }: CardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
+export default function Card({ number, title, description, icon: Icon, mapContent, initialFlipped = false, height = 'h-64' }: CardProps) {
+  const [isFlipped, setIsFlipped] = useState(initialFlipped);
 
   return (
     <div
-      className="relative h-64 cursor-pointer perspective"
+      className={`relative ${height} cursor-pointer perspective`}
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <div
@@ -36,7 +38,7 @@ export default function Card({ number, title, description, icon: Icon, mapConten
             {mapContent ? (
               <div className="w-full h-full flex flex-col">
                 <Icon className="text-red-700 mb-3 mx-auto" size={32} />
-                <h3 className="text-xl font-bold text-red-900 mb-2">{title}</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-red-900 mb-2 px-2">{title}</h3>
                 <p className="text-sm text-gray-700 mb-3">{description}</p>
                 <div className="flex-1 min-h-0 mt-2">
                   <iframe

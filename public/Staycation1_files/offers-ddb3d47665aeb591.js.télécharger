@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[2513],{60087:function(n,u,f){(window.__NEXT_P=window.__NEXT_P||[]).push(["/offers",function(){return f(72978)}])},72978:function(n,u,f){"use strict";function OffersPage(){return null}f.r(u),f.d(u,{default:function(){return OffersPage}})}},function(n){n.O(0,[9774,2888,179],function(){return n(n.s=60087)}),_N_E=n.O()}]);
